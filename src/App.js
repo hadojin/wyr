@@ -8,6 +8,7 @@ import PollDetails from './components/PollDetails'
 import Leaderboard from './components/Leaderboard'
 import NewQuestion from './components/NewQuestion'
 import { BrowserRouter as Router, Switch, Route, Redirect, withRouter} from "react-router-dom";
+import ProtectedRoute from './ProtectedRoute'
 import {Layout} from 'antd'
 const { Footer } = Layout;
 class App extends Component {
@@ -21,35 +22,14 @@ class App extends Component {
       <Layout className="layout">
           {authUser && <Header active='home' authUser={authUser}/> }
         <Switch>
-          <Route path="/login">
-            <Login/ >
-          </Route>
-          <Route path="/home">
-          {authUser ? <Home /> :  <Redirect to={{pathname: "/login"}}/> }
-          </Route>
-          <Route path="/questions">
-          {authUser ? <PollDetails /> :  <Redirect to={{pathname: "/login"}}/> }
-          </Route>
-          <Route path="/leaderboard">
-          {authUser ? <Leaderboard /> :  <Redirect to={{pathname: "/login"}}/> }
-          </Route>
-          <Route path="/new_question">
-          {authUser ? <NewQuestion /> :  <Redirect to={{pathname: "/login"}}/> }
-          </Route>
+          <Route path="/login" component={Login}/>
+          <ProtectedRoute exact path='/' component={Home}/>
+          {/* <ProtectedRoute exact path='/' component={Home}/> */}
+          <ProtectedRoute path='/questions' component={PollDetails}/>
+          <ProtectedRoute path='/leaderboard' component={Leaderboard}/>
+          <ProtectedRoute path='/add' component={NewQuestion}/>
         </Switch>
 
-        {authUser ? (
-        <Redirect
-          to={{
-            pathname: "/home"
-          }}
-        />
-        ) : (
-        <Redirect
-          to={{
-            pathname: "/login"
-          }}
-        />)}
       </Layout>
 
     );
@@ -64,4 +44,4 @@ function mapStateToProps({ authUser }) {
 export default connect(
   mapStateToProps,
   { handleInitialData }
-)(App);
+)(withRouter(App));

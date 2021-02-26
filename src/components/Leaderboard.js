@@ -9,12 +9,9 @@ class Leaderboard extends Component {
         let usersSorted = []
         Object.values(users).map(user=>{
             let score = Object.keys(user.answers).length + user.questions.length
-            // console.log(user.answers)
             usersSorted.push({...user, score})
-            // console.log(user)
-            // console.log(usersSorted)
         })
-        usersSorted.sort((a,b)=>a.score>b.score);
+        usersSorted.sort((a,b)=>b.score-a.score);
         return(
             usersSorted.map(user=><UserCard key={user.id} user={user}/>)
         );

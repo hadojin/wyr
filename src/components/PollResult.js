@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import { Card, Button, Avatar, Progress } from 'antd';
 import {withRouter} from 'react-router-dom'
+import { connect } from 'react-redux';
+
 const { Meta } = Card;
 
 class PollResult extends Component {
     back(){
-        this.props.history.push("/home")
+        this.props.history.push("/")
     }
     render() {
-        const { question, user } = this.props;
+        const { question, user, users } = this.props;
         const userVote = user.answers[question.id]
         const num_votes_1 = question.optionOne.votes.length
         const num_votes_2 = question.optionTwo.votes.length
         const total_votes = num_votes_1 + num_votes_2
         const percentOne = (num_votes_1/total_votes) * 100
         const percentTwo = (num_votes_2/total_votes) * 100
-
         return (
             <Card
                 style={{ width: 600 }}
@@ -26,8 +27,8 @@ class PollResult extends Component {
                 ]}
             >
                 <Meta
-                    avatar={<Avatar src={this.props.user[question.author].avatarURL}/>}
-                    title={question.author + " asks"}
+                    avatar={<Avatar src={users[question.author].avatarURL }/>}
+                    title={users[question.author].name + " asks"}
                     description={
                         <div>
                         <h4>Would you rather</h4>
@@ -50,5 +51,15 @@ class PollResult extends Component {
 
     }
 }
-
-export default withRouter(PollResult)
+function mapStateToProps({ questions, authUser, users }) {
+    return {
+        // questions,
+        // authUser,
+        users
+    };
+}
+const ConnectedPollResult = connect(
+    mapStateToProps
+)(PollResult);
+export default withRouter(ConnectedPollResult)
+// export default withRouter(PollResult)

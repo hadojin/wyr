@@ -31,10 +31,9 @@ class NewQuestion extends Component {
             this.props.addQuestion(question);
             this.props.addQuestionToUser(question);
         })
-        this.props.history.push("/home")
+        this.props.history.push("/")
     }
     render() {
-        console.log("RENDER")
         return (
             <Card
                 style={{ width: 600 }}

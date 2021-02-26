@@ -12,7 +12,7 @@ class PollResult extends Component {
         const {question, user} = this.props;
         this.props.addVote(question.id, values.Answer, user.id)
         this.props.addVoteToUser(question.id, values.Answer, user.id)
-        this.props.history.push('/home')
+        this.props.history.push('/')
     }
     render() {
         const { question, user } = this.props;

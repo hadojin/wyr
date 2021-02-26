@@ -20,11 +20,15 @@ const tailLayout = {
         span: 16,
     },
 };
-
 class Login extends Component {
     onSubmit(values){
         this.props.setAuthUser(values.userId)
-        this.props.history.push("/home")
+        let redirect = this.props.location.state.redirect_to
+        if(redirect){
+            this.props.history.push(redirect)
+        }else{
+            this.props.history.push("/")
+        }
     }
     render() {
         return (

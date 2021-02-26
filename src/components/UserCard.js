@@ -4,9 +4,6 @@ import { Card, Avatar } from 'antd';
 const { Meta } = Card;
 
 class UserCard extends Component{
-    showResult(){
-        this.props.history.push("questions/"+this.props.question.id)
-    }
     render() {
         const { user } = this.props;
         return (

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Card, Button, Avatar } from 'antd';
+// import { Card, Button, Avatar } from 'antd';
 import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 import PollResult from './PollResult'
 import AnswerPoll from './AnswerPoll'
+import NotFound from './NotFound'
 
 class PollDetails extends Component {
     render() {
@@ -12,11 +13,16 @@ class PollDetails extends Component {
         let question = this.props.questions[questionId];
         let userAnsweredQuestions = Object.keys(this.props.users[this.props.authUser].answers);
         let showResult = userAnsweredQuestions.includes(questionId);
-        return (
-            <div>
-            {showResult?<PollResult question={question} user={this.props.users[this.props.authUser]}/>:<AnswerPoll question={question} user={this.props.users[this.props.authUser]}/>}
-            </div>
-        );
+        if(!question){
+            return <NotFound/>
+        }
+        else{
+            return (
+                <div>
+                {showResult?<PollResult question={question} user={this.props.users[this.props.authUser]}/>:<AnswerPoll question={question} user={this.props.users[this.props.authUser]}/>}
+                </div>
+            );
+        }
 
     }
 }

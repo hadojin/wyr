@@ -15,14 +15,15 @@ class Navigation extends Component {
     }
 
     render() {
-        const {active, authUser, users} = this.props;
+        const {authUser, users} = this.props;
+        let active = this.props.history.location.pathname.split("/")[1]
         return (
             // <Header>
             // <div className="logo" />
-            <Menu theme="light" mode="horizontal" defaultSelectedKeys={[active]}>
-              <Menu.Item key="home"><Link to="/home">Home</Link></Menu.Item>
+            <Menu theme="light" mode="horizontal" defaultSelectedKeys={"home"} selectedKeys={active}>
+              <Menu.Item key="home"><Link to="/">Home</Link></Menu.Item>
               <Menu.Item key="leaderboard"><Link to="/leaderboard">Leaderboard</Link></Menu.Item>
-              <Menu.Item key="new_question"><Link to="/new_question">New Question</Link></Menu.Item>
+              <Menu.Item key="add"><Link to="/add">New Question</Link></Menu.Item>
               <Menu.Item style={{float: 'right' }} key='logout' icon={<LogoutOutlined />} onClick={this.logout.bind(this)}>Logout</Menu.Item>
               <div  style={{float: 'right' }}>
                   <Avatar size="Large" src={users[authUser].avatarURL} />

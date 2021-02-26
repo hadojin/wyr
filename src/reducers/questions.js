@@ -10,7 +10,6 @@ export default function questions(state = {}, action) {
       };
       case ADD_VOTE:
         const {userId, questionId, vote} = action
-      // console.log("hopa," , state[questionId][vote].concat(userId))
       return {
         ...state,
         [questionId]: {
