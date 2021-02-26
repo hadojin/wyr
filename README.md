@@ -13,6 +13,6 @@ If you do not have Node installed, please download and install.
 npm install will install the necessary modules for the project to work.
 
 ### Running the application 
-`$ npm start
+`$ npm start`
 
 and you will be able to browse through the game!
