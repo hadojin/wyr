@@ -20,7 +20,7 @@ class Navigation extends Component {
         return (
             // <Header>
             // <div className="logo" />
-            <Menu theme="light" mode="horizontal" defaultSelectedKeys={"home"} selectedKeys={active}>
+            <Menu theme="light" mode="horizontal" defaultSelectedKeys={"home"} selectedKeys={active?active:"home"}>
               <Menu.Item key="home"><Link to="/">Home</Link></Menu.Item>
               <Menu.Item key="leaderboard"><Link to="/leaderboard">Leaderboard</Link></Menu.Item>
               <Menu.Item key="add"><Link to="/add">New Question</Link></Menu.Item>

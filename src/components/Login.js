@@ -23,7 +23,7 @@ const tailLayout = {
 class Login extends Component {
     onSubmit(values){
         this.props.setAuthUser(values.userId)
-        let redirect = this.props.location.state.redirect_to
+        let redirect = this.props.location.state && this.props.location.state.redirect_to
         if(redirect){
             this.props.history.push(redirect)
         }else{

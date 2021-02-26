@@ -20,7 +20,7 @@ class App extends Component {
     const {authUser} = this.props;
     return (
       <Layout className="layout">
-          {authUser && <Header active='home' authUser={authUser}/> }
+          {authUser && <Header authUser={authUser}/> }
         <Switch>
           <Route path="/login" component={Login}/>
           <ProtectedRoute exact path='/' component={Home}/>
